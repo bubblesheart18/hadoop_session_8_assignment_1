@@ -1,0 +1,6 @@
+DEFINE word_count(A) RETURNS X {
+ B= foreach $A generate TOKENIZE(line) as tokens;
+ C= foreach B generate flatten(tokens) as words;
+ D= group C by words;
+ $X= foreach D generate group, COUNT(C);
+};
